@@ -38,8 +38,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User register(User user) {
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
-            log.warn("User is already registered by this e-mail");
-            throw new EntityNotFoundRuntimeException("User is already registered by this e-mail");
+            log.warn("User is  registered by this email");
+            throw new EntityNotFoundRuntimeException("User is registered by this email");
         }
 
         String encoded = encoder.encode(user.getPassword());
@@ -56,8 +56,8 @@ public class UserServiceImpl implements UserService {
         Optional<UserEntity> entity = userRepository.findByEmail(email);
 
         if (!entity.isPresent()) {
-            log.warn("There is no user with this e-mail");
-            throw new EntityNotFoundException("There is no user with this e-mail");
+            log.warn("There is no user with this email");
+            throw new EntityNotFoundException("There is no user with this email");
         } else {
             if (entity.get().getPassword().equals(encodedPassword)) {
                 return mapper.userEntityToUser(entity.get());

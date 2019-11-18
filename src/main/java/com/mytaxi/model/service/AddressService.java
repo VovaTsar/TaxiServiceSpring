@@ -5,8 +5,8 @@ import com.mytaxi.model.domain.Address;
 import java.util.List;
 
 public interface AddressService {
-    List<Address> findAllAddresses();
+    List<Address> findAll();
 
-    Address findAddressById(Long idAddress);
+    Address findById(Long idAddress);
 
 }

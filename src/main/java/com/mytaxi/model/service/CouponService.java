@@ -2,8 +2,10 @@ package com.mytaxi.model.service;
 
 import com.mytaxi.model.domain.Coupon;
 
-public interface CouponService {
-    Coupon getCouponByCouponName( String couponName);
+import java.util.List;
 
-    Integer getDiscount( Coupon coupon);
+public interface CouponService {
+    Coupon findByCouponName( String couponName);
+    List<Coupon> findAll();
+
 }

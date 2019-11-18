@@ -28,7 +28,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public List<Address> findAllAddresses() {
+    public List<Address> findAll() {
         log.info("AddressService: find all addresses");
         List<AddressEntity> result = addressRepository.findAll();
         return result.isEmpty() ? Collections.emptyList()
@@ -39,13 +39,18 @@ public class AddressServiceImpl implements AddressService {
 
 
     @Override
-    public Address findAddressById(Long idAddress) {
-        Optional<AddressEntity> result = addressRepository.findByIdAddress(idAddress);
-
+    public Address findById(Long idAddress) {
+        if (idAddress == null) {
+            log.warn("AddressService: find address by id ");
+            throw new EntityNotFoundRuntimeException("Id is Null");
+        }
+        Optional<AddressEntity> result = addressRepository.findById(idAddress);
         AddressEntity addressEntity = result.
                 orElseThrow(() -> {
                     log.warn("AddressService: find address by id ");
-                    throw new EntityNotFoundRuntimeException("We can not find Address by id"); });
+                    throw new EntityNotFoundRuntimeException("Address not found");
+                });
+
         return mapper.addressEntityToAddress(addressEntity);
 
     }
