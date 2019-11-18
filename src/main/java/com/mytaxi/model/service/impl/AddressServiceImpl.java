@@ -1,5 +1,6 @@
 package com.mytaxi.model.service.impl;
 
+import com.mytaxi.model.customExceptions.EntityNotFoundRuntimeException;
 import com.mytaxi.model.domain.Address;
 import com.mytaxi.model.entities.AddressEntity;
 import com.mytaxi.model.repository.AddressRepository;
@@ -28,16 +29,24 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public List<Address> findAllAddresses() {
-        log.info("get all addresses");
+        log.info("AddressService: find all addresses");
         List<AddressEntity> result = addressRepository.findAll();
         return result.isEmpty() ? Collections.emptyList()
                 : result.stream()
-                .map(mapper::addressEntitytoAddress)
+                .map(mapper::addressEntityToAddress)
                 .collect(Collectors.toList());
     }
 
+
     @Override
-    public Optional<Address> findAddressById(Long idAddress) {
-        return Optional.empty();
+    public Address findAddressById(Long idAddress) {
+        Optional<AddressEntity> result = addressRepository.findByIdAddress(idAddress);
+
+        AddressEntity addressEntity = result.
+                orElseThrow(() -> {
+                    log.warn("AddressService: find address by id ");
+                    throw new EntityNotFoundRuntimeException("We can not find Address by id"); });
+        return mapper.addressEntityToAddress(addressEntity);
+
     }
 }
