@@ -18,7 +18,7 @@ public class ApplicationLocaleConfig implements WebMvcConfigurer {
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource =
                 new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("classpath:locales/messages");
+        messageSource.setBasename("classpath:locale/messages");
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }
