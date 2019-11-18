@@ -9,5 +9,9 @@ public interface UserService {
 
     User login(String email, String password);
 
+    List<User> findAll(Integer currentPage, Integer recordsPerPage);
+
+    long showNumberOfRows();
+
 
 }

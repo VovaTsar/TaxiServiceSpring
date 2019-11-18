@@ -20,19 +20,19 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_user")
-    protected Long userId;
+    private Long userId;
 
     @Column(name = "name", nullable = false, length = 20)
-    protected String name;
+    private String name;
 
     @Column(name = "surname", nullable = false, length = 20)
-    protected String surname;
+    private String surname;
 
     @Column(name = "password", nullable = false, length = 20)
-    protected String password;
+    private String password;
 
     @Column(name = "phone_number", nullable = false, length = 20)
-    protected String phoneNumber;
+    private String phoneNumber;
 
     @Column(name = "email", nullable = false, unique = true, length = 20)
     private String email;
@@ -45,8 +45,8 @@ public class UserEntity {
     private CarEntity car;
 
     @Column(name = "active", nullable = false, length = 20)
-    protected Boolean active;
+    private Boolean active;
 
     @Column(name = "role", nullable = false, length = 20)
-    protected Role role;
+    private Role role;
 }

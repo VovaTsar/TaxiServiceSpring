@@ -13,23 +13,23 @@ import javax.validation.constraints.Pattern;
 @Builder
 @AllArgsConstructor
 public class User {
-    protected Long userId;
+    private Long userId;
 
     @Pattern(regexp = "[a-zA-Z\\p{IsCyrillic}]{3,20}")
     @NotEmpty
-    protected String name;
+    private String name;
 
     @Pattern(regexp = "(?=.*\\\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}")
     @NotEmpty
-    protected String surname;
+    private String surname;
 
     @Pattern(regexp = "[a-zA-Z0-9]{5,20}")
     @NotEmpty
-    protected String password;
+    private String password;
 
     @Pattern(regexp = "^(\\+380)([0-9]{9})")
     @NotEmpty
-    protected String phoneNumber;
+    private String phoneNumber;
 
     @Pattern(regexp = "^[_A-Za-z0-9-+]+(.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(.[A-Za-z0-9]+)*(.[A-Za-z]{2,})$")
     @NotEmpty
@@ -42,8 +42,12 @@ public class User {
     private Car car;
 
     @NotNull
-    protected Boolean active;
+    private Boolean active;
 
     @NotNull
-    protected Role role;
+    private Role role;
+
+    public User(User user, String encoded) {
+
+    }
 }
