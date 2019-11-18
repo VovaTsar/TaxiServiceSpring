@@ -5,7 +5,9 @@ import com.mytaxi.model.entities.OrderEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
-    OrderEntity findByIdOrderAndOrderStatus(Long idOrder, OrderStatus orderStatus);
+   Optional<OrderEntity> findByIdOrderAndOrderStatus(Long idOrder, OrderStatus orderStatus);
 }

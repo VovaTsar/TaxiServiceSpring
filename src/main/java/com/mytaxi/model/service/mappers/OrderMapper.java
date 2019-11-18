@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Mapper
 public interface OrderMapper {
-    Order orderEntitytoOrder(OrderEntity orderEntity);
+    Order orderEntityToOrder(OrderEntity orderEntity);
     OrderEntity orderToOrderEntity(Order order);
 }

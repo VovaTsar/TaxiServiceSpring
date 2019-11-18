@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Mapper
 public interface CouponMapper {
-    Coupon couponEntitytoCoupon(CouponEntity couponEntity);
+    Coupon couponEntityToCoupon(CouponEntity couponEntity);
     CouponEntity couponToCouponEntity(Coupon coupon);
 }

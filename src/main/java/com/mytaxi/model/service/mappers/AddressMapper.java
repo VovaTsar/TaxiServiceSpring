@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Mapper
 public interface AddressMapper {
-    Address addressEntitytoAddress(AddressEntity addressEntity);
+    Address addressEntityToAddress(AddressEntity addressEntity);
     AddressEntity addressToAddressEntity(Address address);
 }
