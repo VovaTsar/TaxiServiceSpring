@@ -58,14 +58,13 @@ public class UserServiceImpl implements UserService {
         if (!entity.isPresent()) {
             log.warn("There is no user with this email");
             throw new EntityNotFoundException("There is no user with this email");
-        } else {
+        }
             if (entity.get().getPassword().equals(encodedPassword)) {
                 return mapper.userEntityToUser(entity.get());
             } else {
                 log.warn("Incorrect password");
                 throw new EntityNotFoundException("Incorrect password");
             }
-        }
     }
 
     @Override
@@ -78,8 +77,8 @@ public class UserServiceImpl implements UserService {
         PageRequest pageRequest = PageRequest.of(currentPage, recordsPerPage);
         Page<UserEntity> result = userRepository.findAll(pageRequest);
 
-        return result.isEmpty() ? Collections.emptyList()
-                : result.stream()
+        return result.isEmpty() ?
+                Collections.emptyList() : result.stream()
                 .map(mapper::userEntityToUser)
                 .collect(Collectors.toList());
     }

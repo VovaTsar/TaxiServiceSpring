@@ -33,8 +33,8 @@ public class AddressServiceImpl implements AddressService {
     public List<Address> findAll() {
         log.info("AddressService: find all addresses");
         List<AddressEntity> result = addressRepository.findAll();
-        return result.isEmpty() ? Collections.emptyList()
-                : result.stream()
+        return result.isEmpty() ?
+                Collections.emptyList() : result.stream()
                 .map(mapper::addressEntityToAddress)
                 .collect(Collectors.toList());
     }
