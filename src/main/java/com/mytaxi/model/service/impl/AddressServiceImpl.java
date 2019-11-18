@@ -1,5 +1,6 @@
 package com.mytaxi.model.service.impl;
 
+import com.mytaxi.model.customExceptions.DataValidateRuntimeException;
 import com.mytaxi.model.customExceptions.EntityNotFoundRuntimeException;
 import com.mytaxi.model.domain.Address;
 import com.mytaxi.model.entities.AddressEntity;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -40,9 +42,9 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public Address findById(Long idAddress) {
-        if (idAddress == null) {
+        if (Objects.isNull(idAddress)) {
             log.warn("AddressService: find address by id ");
-            throw new EntityNotFoundRuntimeException("Id is Null");
+            throw new DataValidateRuntimeException("Id is Null");
         }
         Optional<AddressEntity> result = addressRepository.findById(idAddress);
         AddressEntity addressEntity = result.

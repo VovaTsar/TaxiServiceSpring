@@ -1,5 +1,6 @@
 package com.mytaxi.model.service.impl;
 
+import com.mytaxi.model.customExceptions.DataValidateRuntimeException;
 import com.mytaxi.model.customExceptions.EntityNotFoundRuntimeException;
 import com.mytaxi.model.domain.Coupon;
 import com.mytaxi.model.entities.AddressEntity;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -30,9 +32,9 @@ public class CouponServiceImpl implements CouponService {
 
     @Override
     public Coupon findByCouponName(String couponName) {
-        if (couponName.isEmpty()){
+        if (Objects.isNull(couponName)){
             log.warn("CouponService: find coupon by coupon name ");
-            throw new EntityNotFoundRuntimeException("We can not find coupon by name");
+            throw new DataValidateRuntimeException("Сoupon name is null");
         }
 
         Optional<CouponEntity> result = couponRepository.findByCouponName(couponName);
