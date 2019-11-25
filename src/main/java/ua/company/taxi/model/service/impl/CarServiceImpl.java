@@ -1,0 +1,48 @@
+package ua.company.taxi.model.service.impl;
+
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import ua.company.taxi.model.domain.Car;
+import ua.company.taxi.model.entity.CarEntity;
+import ua.company.taxi.model.entity.CarType;
+import ua.company.taxi.model.exception.CarEntityNotFoundRuntimeException;
+import ua.company.taxi.model.mapper.CarMapper;
+import ua.company.taxi.model.repository.CarRepository;
+import ua.company.taxi.model.service.CarService;
+import ua.company.taxi.model.entity.Street;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
+@Slf4j
+public class CarServiceImpl implements CarService {
+
+    private final CarRepository carRepository;
+    private final CarMapper carMapper;
+
+
+    @Override
+    public List<Car> getAvailableType(CarType type, Street street) {
+        log.info("CarServiceImpl:getAvailableType");
+        List<CarEntity> carEntities = carRepository.findAllByTypeAndPlace(type, street);
+
+        return carEntities.isEmpty() ?
+                Collections.emptyList() : carEntities.stream()
+                .map(carMapper::carEntityToCar)
+                .collect(Collectors.toList());
+    }
+
+
+    @Override
+    public Car getCarById(Long carId) {
+        log.info("CarServiceImpl:getCarById");
+        return carMapper.carEntityToCar(carRepository
+                .findById(carId)
+                .orElseThrow(() -> new CarEntityNotFoundRuntimeException("Car Entity Not Found")));
+    }
+}
