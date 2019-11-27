@@ -8,6 +8,7 @@ import ua.company.taxi.model.domain.Car;
 import ua.company.taxi.model.entity.CarEntity;
 import ua.company.taxi.model.entity.CarType;
 import ua.company.taxi.model.exception.CarEntityNotFoundRuntimeException;
+import ua.company.taxi.model.exception.UncorrectInputDataRuntimeExeption;
 import ua.company.taxi.model.mapper.CarMapper;
 import ua.company.taxi.model.repository.CarRepository;
 import ua.company.taxi.model.service.CarService;
@@ -15,6 +16,7 @@ import ua.company.taxi.model.entity.Street;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,6 +30,10 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<Car> getAvailableType(CarType type, Street street) {
+        if (Objects.isNull(type)||Objects.isNull(street)){
+            log.error("CarServiceImpl:getAvailableType");
+            throw new UncorrectInputDataRuntimeExeption("type or street is empty");
+        }
         log.info("CarServiceImpl:getAvailableType");
         List<CarEntity> carEntities = carRepository.findAllByTypeAndPlace(type, street);
 
@@ -40,6 +46,10 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public Car getCarById(Long carId) {
+        if (carId<0){
+            log.error("CarServiceImpl:getCarById");
+            throw new UncorrectInputDataRuntimeExeption("Id must be positive");
+        }
         log.info("CarServiceImpl:getCarById");
         return carMapper.carEntityToCar(carRepository
                 .findById(carId)

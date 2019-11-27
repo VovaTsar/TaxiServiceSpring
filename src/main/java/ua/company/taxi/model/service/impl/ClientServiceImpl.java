@@ -8,12 +8,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ua.company.taxi.model.entity.Role;
+import ua.company.taxi.model.exception.UncorrectInputDataRuntimeExeption;
 import ua.company.taxi.model.mapper.ClientMapper;
 import ua.company.taxi.model.repository.ClientRepository;
 import ua.company.taxi.model.service.ClientService;
 import ua.company.taxi.model.domain.Client;
 import ua.company.taxi.model.entity.ClientEntity;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -38,6 +40,10 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public UserDetails loadUserByUsername(String login) {
+        if (Objects.isNull(login)){
+            log.error("ClientServiceImpl:loadUserByUsername");
+            throw new UncorrectInputDataRuntimeExeption("login is empty");
+        }
         log.info("ClientServiceImpl:loadUserByUsername");
         Optional<ClientEntity> byLogin = clientRepository
                 .findByLogin(login);
@@ -47,6 +53,10 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void registerClient(Client client) {
+        if (Objects.isNull(client)){
+            log.error("ClientServiceImpl:registerClient");
+            throw new UncorrectInputDataRuntimeExeption("client is empty");
+        }
         log.info("ClientServiceImpl:registerClient");
         client.setRole(Role.ROLE_USER);
         client.setTotalSpentValue(0L);
