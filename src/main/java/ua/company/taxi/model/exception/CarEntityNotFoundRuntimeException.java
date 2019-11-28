@@ -1,6 +1,7 @@
 package ua.company.taxi.model.exception;
 
 public class CarEntityNotFoundRuntimeException extends RuntimeException {
+
     public CarEntityNotFoundRuntimeException() { }
 
     public CarEntityNotFoundRuntimeException(String message) {

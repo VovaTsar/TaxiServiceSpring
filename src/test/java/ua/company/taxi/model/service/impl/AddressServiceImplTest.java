@@ -31,7 +31,7 @@ public class AddressServiceImplTest {
 
     private static final Address ADDRESS = new Address(1L, Street.Kreschatyk, Street.Polytech, 100L, 30L);
 
-    private static final AddressEntity ADDRESS_ENTITY = new AddressEntity();
+    private static final AddressEntity ENTITY = new AddressEntity();
 
     @Rule
     public final ExpectedException exception = ExpectedException.none();
@@ -53,7 +53,7 @@ public class AddressServiceImplTest {
 
     @Test
     public void findByIdShouldReturnAddressById() {
-        when(repository.findById(anyLong())).thenReturn(Optional.of(ADDRESS_ENTITY));
+        when(repository.findById(anyLong())).thenReturn(Optional.of(ENTITY));
         when(mapper.addressEntityToAddress(any(AddressEntity.class))).thenReturn(ADDRESS);
         Address actual = service.findById(1L);
 
@@ -65,22 +65,23 @@ public class AddressServiceImplTest {
 
     @Test
     public void findAllByDestinationPlaceAndInitialPlaceShouldReturnAddressByTwoParam() {
-        when(repository.findAllByDestinationPlaceAndInitialPlace(any(),any())).thenReturn(Optional.of(ADDRESS_ENTITY));
+        when(repository.findAllByDestinationPlaceAndInitialPlace(any(), any())).thenReturn(Optional.of(ENTITY));
         when(mapper.addressEntityToAddress(any(AddressEntity.class))).thenReturn(ADDRESS);
         Address actual = service.findAllByDestinationPlaceAndInitialPlace(Street.Kreschatyk, Street.Polytech);
 
-        verify(repository).findAllByDestinationPlaceAndInitialPlace(any(),any());
+        verify(repository).findAllByDestinationPlaceAndInitialPlace(any(), any());
         verify(mapper).addressEntityToAddress(any(AddressEntity.class));
 
         assertThat(actual, equalTo(ADDRESS));
     }
+
     @Test
     public void findLongTimeShouldReturnTimeByTwoStringParam() {
-        when(repository.findAllByDestinationPlaceAndInitialPlace(any(),any())).thenReturn(Optional.of(ADDRESS_ENTITY));
+        when(repository.findAllByDestinationPlaceAndInitialPlace(any(), any())).thenReturn(Optional.of(ENTITY));
         when(mapper.addressEntityToAddress(any(AddressEntity.class))).thenReturn(ADDRESS);
-        Long  actual = service.findAllByDestinationPlaceAndInitialPlace(Street.Kreschatyk, Street.Polytech).getTime();
+        Long actual = service.findAllByDestinationPlaceAndInitialPlace(Street.Kreschatyk, Street.Polytech).getTime();
 
-        verify(repository).findAllByDestinationPlaceAndInitialPlace(any(),any());
+        verify(repository).findAllByDestinationPlaceAndInitialPlace(any(), any());
         verify(mapper).addressEntityToAddress(any(AddressEntity.class));
 
 

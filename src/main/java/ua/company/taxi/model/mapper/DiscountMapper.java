@@ -8,6 +8,7 @@ import ua.company.taxi.model.entity.DiscountEntity;
 @Component
 @Slf4j
 public class DiscountMapper {
+
     public Discount discountEntityToDiscount(DiscountEntity discountEntity) {
         if (discountEntity == null) {
             return null;

@@ -39,8 +39,8 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public UserDetails loadUserByUsername(String login) {
         if (Objects.isNull(login)) {
-            log.error("ClientServiceImpl:loadUserByUsername");
-            throw new UnCorrectInputDataRuntimeException("login is empty");
+            log.warn("ClientServiceImpl:loadUserByUsername");
+            throw new UnCorrectInputDataRuntimeException("Login is empty");
         }
         Optional<ClientEntity> byLogin = clientRepository
                 .findByLogin(login);
@@ -52,8 +52,8 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public void registerClient(Client client) {
         if (Objects.isNull(client)) {
-            log.error("ClientServiceImpl:registerClient");
-            throw new UnCorrectInputDataRuntimeException("client is empty");
+            log.warn("ClientServiceImpl:registerClient");
+            throw new UnCorrectInputDataRuntimeException("Client is empty");
         }
         client.setRole(Role.ROLE_USER);
         client.setTotalSpentValue(0L);
@@ -63,6 +63,10 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void addToSpentValue(Long value) {
+        if (value < 0) {
+            log.warn("ClientServiceImpl:addToSpentValue");
+            throw new UnCorrectInputDataRuntimeException("Value must be positive");
+        }
         clientRepository.updateSpentValue(getCurrentClient().getId(), value);
     }
 

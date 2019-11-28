@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 import ua.company.taxi.model.domain.Car;
 import ua.company.taxi.model.entity.CarEntity;
 import ua.company.taxi.model.entity.CarType;
+import ua.company.taxi.model.entity.Street;
 import ua.company.taxi.model.exception.CarEntityNotFoundRuntimeException;
 import ua.company.taxi.model.exception.UnCorrectInputDataRuntimeException;
 import ua.company.taxi.model.mapper.CarMapper;
 import ua.company.taxi.model.repository.CarRepository;
 import ua.company.taxi.model.service.CarService;
-import ua.company.taxi.model.entity.Street;
 
 import java.util.Collections;
 import java.util.List;
@@ -30,7 +30,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<Car> getAvailableType(CarType type, Street street) {
-        if (Objects.isNull(type)||Objects.isNull(street)){
+        if (Objects.isNull(type) || Objects.isNull(street)) {
             log.warn("CarServiceImpl:getAvailableType");
             throw new UnCorrectInputDataRuntimeException("Type or street is empty");
         }
@@ -45,8 +45,8 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public Car getCarById(Long carId) {
-        if (carId<0){
-            log.error("CarServiceImpl:getCarById");
+        if (carId < 0) {
+            log.warn("CarServiceImpl:getCarById");
             throw new UnCorrectInputDataRuntimeException("Id must be positive");
         }
         return carMapper.carEntityToCar(carRepository

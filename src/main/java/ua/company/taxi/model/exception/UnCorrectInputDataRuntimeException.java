@@ -1,6 +1,7 @@
 package ua.company.taxi.model.exception;
 
 public class UnCorrectInputDataRuntimeException extends RuntimeException {
+
     public UnCorrectInputDataRuntimeException() { }
 
     public UnCorrectInputDataRuntimeException(String message) {

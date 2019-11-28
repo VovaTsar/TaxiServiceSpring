@@ -8,6 +8,7 @@ import ua.company.taxi.model.entity.CarEntity;
 @Component
 @Slf4j
 public class CarMapper {
+
     public Car carEntityToCar(CarEntity carEntity) {
         if (carEntity == null) {
             return null;

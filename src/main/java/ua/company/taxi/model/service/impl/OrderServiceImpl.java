@@ -24,7 +24,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void addOrder(Order order) {
         if (Objects.isNull(order)) {
-            log.error("OrderServiceImpl:addOrder");
+            log.warn("OrderServiceImpl:addOrder");
             throw new UnCorrectInputDataRuntimeException("order is empty");
         }
         orderRepository.save(orderMapper.orderToOrderEntity(order));
@@ -34,7 +34,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Integer getNumRides(Long id) {
         if (id < 0) {
-            log.error("OrderServiceImpl:getNumRides");
+            log.warn("OrderServiceImpl:getNumRides");
             throw new UnCorrectInputDataRuntimeException("Id must be positive");
         }
 

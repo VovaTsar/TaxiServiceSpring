@@ -11,6 +11,7 @@ import ua.company.taxi.model.entity.OrderEntity;
 @Slf4j
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class OrderMapper {
+
     private CarMapper carMapper;
     private ClientMapper clientMapper;
     private AddressMapper addressMapper;
