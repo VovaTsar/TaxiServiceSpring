@@ -16,6 +16,7 @@ import java.util.Collection;
 @Builder
 @Table(name = "clients")
 public class ClientEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_client", unique = true, nullable = false)

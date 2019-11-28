@@ -9,5 +9,5 @@ public interface OrderService {
 
     void addOrder(Order order);
 
-    Integer getNumRides (Long id);
+    Integer getNumRides(Long id);
 }

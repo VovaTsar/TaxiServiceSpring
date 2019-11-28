@@ -34,7 +34,7 @@ public class UserController {
 
 
         model.addAttribute("cancel", cancel != null);
-        model.addAttribute("client",  clientService.getCurrentClient());
+        model.addAttribute("client", clientService.getCurrentClient());
         model.addAttribute("numRides", orderService.getNumRides(clientService.getCurrentClient().getId()));
         return "userHome";
     }

@@ -14,6 +14,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 public class OrderEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_order", unique = true, nullable = false)

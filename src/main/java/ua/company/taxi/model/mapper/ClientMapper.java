@@ -9,7 +9,6 @@ import ua.company.taxi.model.domain.Client;
 @Slf4j
 public class ClientMapper {
     public Client clientEntityToClient(ClientEntity clientEntity) {
-        log.info("ClientMapper:clientEntityToClient");
         if (clientEntity == null) {
             return null;
         }
@@ -24,7 +23,6 @@ public class ClientMapper {
     }
 
     public ClientEntity clientToClientEntity(Client client) {
-        log.info("ClientMapper:clientToClientEntity");
         if (client == null) {
             return null;
         }

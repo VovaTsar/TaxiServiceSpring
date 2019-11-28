@@ -13,14 +13,15 @@ import java.util.Collection;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name="cars")
+@Table(name = "cars")
 public class CarEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_car",unique=true, nullable = false)
+    @Column(name = "id_car", unique = true, nullable = false)
     private Long id;
 
-    @Column(name="make", columnDefinition="VARCHAR(45) default 'unknown'")
+    @Column(name = "make", columnDefinition = "VARCHAR(45) default 'unknown'")
     private String make;
 
     @Enumerated(EnumType.STRING)

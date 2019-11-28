@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ua.company.taxi.model.entity.OrderEntity;
 import ua.company.taxi.model.domain.Order;
+import ua.company.taxi.model.entity.OrderEntity;
 
 @Component
 @Slf4j
@@ -16,7 +16,6 @@ public class OrderMapper {
     private AddressMapper addressMapper;
 
     public Order orderEntityToOrder(OrderEntity orderEntity) {
-        log.info("OrderMapper:orderEntityToOrder");
         if (orderEntity == null) {
             return null;
         }
@@ -32,13 +31,12 @@ public class OrderMapper {
     }
 
     public OrderEntity orderToOrderEntity(Order order) {
-        log.info("OrderMapper:orderToOrderEntity");
         if (order == null) {
             return null;
         }
 
         return OrderEntity.builder()
-                .id(order.getId() )
+                .id(order.getId())
                 .carEntity(carMapper.carToCarEntity(order.getCar()))
                 .clientEntity(clientMapper.clientToClientEntity(order.getClient()))
                 .addressEntity(addressMapper.addressToAddressEntity(order.getAddress()))

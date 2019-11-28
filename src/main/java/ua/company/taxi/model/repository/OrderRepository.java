@@ -10,11 +10,11 @@ import java.util.List;
 
 @Repository
 public interface OrderRepository extends CrudRepository<OrderEntity, Long> {
+
     List<OrderEntity> findAllByClientEntityId(Long id);
 
     Long countAllByCarEntity(CarEntity carEntity);
 
     Long countAllByClientEntity(ClientEntity clientEntity);
-
 
 }

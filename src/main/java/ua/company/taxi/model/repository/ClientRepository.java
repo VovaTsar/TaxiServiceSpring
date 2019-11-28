@@ -14,8 +14,7 @@ import java.util.Optional;
 @Repository
 public interface ClientRepository extends CrudRepository<ClientEntity, Long> {
 
-   Optional<ClientEntity> findByLogin(String login);
-
+    Optional<ClientEntity> findByLogin(String login);
 
     List<ClientEntity> findByRole(Role role);
 

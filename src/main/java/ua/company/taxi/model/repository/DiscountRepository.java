@@ -13,5 +13,4 @@ public interface DiscountRepository extends CrudRepository<DiscountEntity, Long>
             nativeQuery = true)
     Integer getPersonalDiscount(@Param("min_spent") Long min_spent);
 
-
 }

@@ -13,7 +13,4 @@ public interface CarRepository extends CrudRepository<CarEntity, Long> {
 
     List<CarEntity> findAllByTypeAndPlace(CarType type, Street place);
 
-
-
-
 }

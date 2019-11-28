@@ -8,14 +8,14 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ua.company.taxi.model.domain.Car;
+import ua.company.taxi.model.domain.Client;
+import ua.company.taxi.model.domain.Order;
 import ua.company.taxi.model.entity.Role;
+import ua.company.taxi.model.repository.AddressRepository;
 import ua.company.taxi.model.repository.CarRepository;
 import ua.company.taxi.model.repository.ClientRepository;
 import ua.company.taxi.model.repository.OrderRepository;
 import ua.company.taxi.model.service.UtilityService;
-import ua.company.taxi.model.domain.Client;
-import ua.company.taxi.model.domain.Order;
-import ua.company.taxi.model.repository.AddressRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,13 +34,11 @@ public class UtilityServiceImpl implements UtilityService {
 
     @Override
     public Long countPrice(Integer discount, Long time) {
-        log.info("UtilityServiceImpl:countPrice");
         return time * (100 - discount) / 40;
     }
 
     @Override
     public Page<Order> buildPageOrders(Pageable pageable, Client client) {
-        log.info("UtilityServiceImpl:buildPageOrders");
         final List<Order> orders = new ArrayList<>();
 
         orderRepository.findAllByClientEntityId(client.getId())
@@ -49,9 +47,9 @@ public class UtilityServiceImpl implements UtilityService {
                         .price(v.getPrice())
                         .carMake(carRepository.findById(v.getCarEntity().getId()).get().getMake())
                         .carType(carRepository.findById(v.getCarEntity().getId()).get().getType())
-                        .destPlace(addressRepository.getTimeById(v.getAddressEntity().getId()).get().getDestinationPlace())
-                        .initPlace(addressRepository.getTimeById(v.getAddressEntity().getId()).get().getInitialPlace())
-                        .time(addressRepository.getTimeById(v.getAddressEntity().getId()).get().getTime())
+                        .destPlace(addressRepository.findById(v.getAddressEntity().getId()).get().getDestinationPlace())
+                        .initPlace(addressRepository.findById(v.getAddressEntity().getId()).get().getInitialPlace())
+                        .time(addressRepository.findById(v.getAddressEntity().getId()).get().getTime())
                         .build()));
         List<Order> resList = buildSubList(orders, pageable);
 
@@ -60,7 +58,6 @@ public class UtilityServiceImpl implements UtilityService {
 
     @Override
     public Page<Car> buildPageCars(Pageable pageable) {
-        log.info("UtilityServiceImpl:buildPageCars");
         final List<Car> cars = new ArrayList<>();
 
         carRepository.findAll().forEach(v -> cars.add(Car
@@ -78,7 +75,6 @@ public class UtilityServiceImpl implements UtilityService {
 
     @Override
     public Page<Client> buildPageClients(Pageable pageable) {
-        log.info("UtilityServiceImpl:buildPageClients");
         final List<Client> clients = new ArrayList<>();
 
         clientRepository.findByRole(Role.ROLE_USER).forEach(v ->

@@ -2,14 +2,13 @@ package ua.company.taxi.model.mapper;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import ua.company.taxi.model.entity.DiscountEntity;
 import ua.company.taxi.model.domain.Discount;
+import ua.company.taxi.model.entity.DiscountEntity;
 
 @Component
 @Slf4j
 public class DiscountMapper {
     public Discount discountEntityToDiscount(DiscountEntity discountEntity) {
-        log.info("DiscountMapper:discountEntityToDiscount");
         if (discountEntity == null) {
             return null;
         }
@@ -22,7 +21,6 @@ public class DiscountMapper {
     }
 
     public DiscountEntity discountToDiscountEntity(Discount discount) {
-        log.info("DiscountMapper:discountEntityToDiscount");
         if (discount == null) {
             return null;
         }
