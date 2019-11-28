@@ -38,7 +38,7 @@ public class AccountController {
 
 
     @GetMapping("/register")
-    public String registration(Map<String, Object> model) {
+    public String registration() {
         return "register";
     }
 

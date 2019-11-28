@@ -27,14 +27,14 @@ public class AddressServiceImpl implements AddressService {
     public Long findLongTime(Street initialPlace, Street destinationPlace) {
         if (Objects.isNull(initialPlace) || Objects.isNull(destinationPlace)) {
             log.error("AddressServiceImpl:findLongTime");
-            throw new UnCorrectInputDataRuntimeException("initialPlace or destinationPlace is empty");
+            throw new UnCorrectInputDataRuntimeException("InitialPlace or destinationPlace is empty");
         }
-        return findTime(initialPlace, destinationPlace).getTime();
+        return findAllByDestinationPlaceAndInitialPlace(initialPlace, destinationPlace).getTime();
     }
 
     @Override
-    public Address findTime(Street initialPlace, Street destinationPlace) {
-        log.info("AddressServiceImpl:findTime");
+    public Address findAllByDestinationPlaceAndInitialPlace(Street initialPlace, Street destinationPlace) {
+
         return addressMapper.addressEntityToAddress(addressRepository
                 .findAllByDestinationPlaceAndInitialPlace(initialPlace, destinationPlace)
                 .orElseThrow(() -> (new AddressEntityNotFoundRuntimeException("Address Entity Not Found!"))));

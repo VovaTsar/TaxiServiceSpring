@@ -9,7 +9,7 @@ public interface AddressService {
 
     Long findLongTime(Street initialPlace, Street destinationPlace);
 
-    Address findTime(Street initialPlace, Street destinationPlace);
+    Address findAllByDestinationPlaceAndInitialPlace(Street initialPlace, Street destinationPlace);
 
     Address findById(Long id);
 

@@ -62,7 +62,7 @@ public class UserController {
         if (carId != null) {
             model.put("waitTime", addressService.findLongTime(carService.getCarById(carId).getPlace(), destPlace));
             model.put("rideTime", addressService.findLongTime(initPlace, destPlace));
-            model.put("timeId", addressService.findTime(initPlace, destPlace));
+            model.put("addressId", addressService.findAllByDestinationPlaceAndInitialPlace(initPlace, destPlace));
             model.put("price", utilityService.countPrice(
                     discountService.getClientDiscount(clientService.getCurrentClient()),
                     addressService.findLongTime(initPlace, destPlace)));
@@ -82,7 +82,7 @@ public class UserController {
     @PostMapping(path = "/history")
     public String confirmOrder(Map<String, Object> model,
                                @RequestParam Long carId,
-                               @RequestParam Long timeId,
+                               @RequestParam Long addressId,
                                @RequestParam Long price,
                                @RequestParam Long waitTime,
                                @PageableDefault(size = 7) Pageable pageable) {
@@ -91,7 +91,7 @@ public class UserController {
                 .car(carService.getCarById(carId))
                 .client(clientService.getCurrentClient())
                 .price(price)
-                .address(addressService.findById(timeId))
+                .address(addressService.findById(addressId))
                 .waitTime(waitTime)
                 .build());
         clientService.addToSpentValue(price);

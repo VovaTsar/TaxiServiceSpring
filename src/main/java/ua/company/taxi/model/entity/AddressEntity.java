@@ -37,4 +37,5 @@ public class AddressEntity {
 
     @Column(name = "time", nullable = false)
     private Long time;
+
 }
