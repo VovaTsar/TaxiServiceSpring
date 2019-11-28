@@ -31,8 +31,8 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<Car> getAvailableType(CarType type, Street street) {
         if (Objects.isNull(type)||Objects.isNull(street)){
-            log.error("CarServiceImpl:getAvailableType");
-            throw new UnCorrectInputDataRuntimeException("type or street is empty");
+            log.warn("CarServiceImpl:getAvailableType");
+            throw new UnCorrectInputDataRuntimeException("Type or street is empty");
         }
         List<CarEntity> carEntities = carRepository.findAllByTypeAndPlace(type, street);
 

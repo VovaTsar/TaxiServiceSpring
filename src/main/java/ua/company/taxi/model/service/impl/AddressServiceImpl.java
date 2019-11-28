@@ -26,7 +26,7 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public Long findLongTime(Street initialPlace, Street destinationPlace) {
         if (Objects.isNull(initialPlace) || Objects.isNull(destinationPlace)) {
-            log.error("AddressServiceImpl:findLongTime");
+            log.warn("AddressServiceImpl:findLongTime");
             throw new UnCorrectInputDataRuntimeException("InitialPlace or destinationPlace is empty");
         }
         return findAllByDestinationPlaceAndInitialPlace(initialPlace, destinationPlace).getTime();
@@ -44,7 +44,7 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public Address findById(Long id) {
         if (id < 0) {
-            log.error("AddressServiceImpl:findById");
+            log.warn("AddressServiceImpl:findById");
             throw new UnCorrectInputDataRuntimeException("Id must be positive");
         }
         return addressMapper.addressEntityToAddress(addressRepository

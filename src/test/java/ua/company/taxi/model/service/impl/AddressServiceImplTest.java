@@ -18,21 +18,19 @@ import ua.company.taxi.model.mapper.AddressMapper;
 import ua.company.taxi.model.repository.AddressRepository;
 import ua.company.taxi.model.service.AddressService;
 
-import static org.mockito.Mockito.reset;
+import java.util.Optional;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {AddressServiceImpl.class})
 public class AddressServiceImplTest {
-//    private Long id;
-//
-//    private Street initialPlace;
-//
-//    private Street destinationPlace;
-//
-//    private Long price;
-//
-//    private Long time;
-    private static final Address ADDRESS = new Address(1L, Street.Kreschatyk,Street.Polytech,100L,30L);
+
+    private static final Address ADDRESS = new Address(1L, Street.Kreschatyk, Street.Polytech, 100L, 30L);
+
     private static final AddressEntity ADDRESS_ENTITY = new AddressEntity();
 
     @Rule
@@ -51,12 +49,50 @@ public class AddressServiceImplTest {
     public void resetMock() {
         reset(repository, mapper);
     }
+
+
     @Test
-    public void  findLongTimeShouldThrowUnCorrectInputDataRuntimeExceptionWithNegativeId() {
+    public void findByIdShouldReturnAddressById() {
+        when(repository.findById(anyLong())).thenReturn(Optional.of(ADDRESS_ENTITY));
+        when(mapper.addressEntityToAddress(any(AddressEntity.class))).thenReturn(ADDRESS);
+        Address actual = service.findById(1L);
+
+        verify(repository).findById(anyLong());
+        verify(mapper).addressEntityToAddress(any(AddressEntity.class));
+
+        assertThat(actual, equalTo(ADDRESS));
+    }
+
+    @Test
+    public void findAllByDestinationPlaceAndInitialPlaceShouldReturnAddressByTwoParam() {
+        when(repository.findAllByDestinationPlaceAndInitialPlace(any(),any())).thenReturn(Optional.of(ADDRESS_ENTITY));
+        when(mapper.addressEntityToAddress(any(AddressEntity.class))).thenReturn(ADDRESS);
+        Address actual = service.findAllByDestinationPlaceAndInitialPlace(Street.Kreschatyk, Street.Polytech);
+
+        verify(repository).findAllByDestinationPlaceAndInitialPlace(any(),any());
+        verify(mapper).addressEntityToAddress(any(AddressEntity.class));
+
+        assertThat(actual, equalTo(ADDRESS));
+    }
+    @Test
+    public void findLongTimeShouldReturnTimeByTwoStringParam() {
+        when(repository.findAllByDestinationPlaceAndInitialPlace(any(),any())).thenReturn(Optional.of(ADDRESS_ENTITY));
+        when(mapper.addressEntityToAddress(any(AddressEntity.class))).thenReturn(ADDRESS);
+        Long  actual = service.findAllByDestinationPlaceAndInitialPlace(Street.Kreschatyk, Street.Polytech).getTime();
+
+        verify(repository).findAllByDestinationPlaceAndInitialPlace(any(),any());
+        verify(mapper).addressEntityToAddress(any(AddressEntity.class));
+
+
+        assertThat(actual, equalTo(30L));
+    }
+
+    @Test
+    public void findLongTimeShouldThrowUnCorrectInputDataRuntimeExceptionWithNegativeId() {
         exception.expect(UnCorrectInputDataRuntimeException.class);
         exception.expectMessage("InitialPlace or destinationPlace is empty");
 
-        service.findLongTime(null,null);
+        service.findLongTime(null, null);
     }
 
     @Test
@@ -66,15 +102,17 @@ public class AddressServiceImplTest {
 
         service.findAllByDestinationPlaceAndInitialPlace(null, null);
     }
+
     @Test
-    public void  findByIdShouldThrowUnCorrectInputDataRuntimeExceptionWithNegativeId() {
+    public void findByIdShouldThrowUnCorrectInputDataRuntimeExceptionWithNegativeId() {
         exception.expect(UnCorrectInputDataRuntimeException.class);
         exception.expectMessage("Id must be positive");
 
         service.findById(-1L);
     }
+
     @Test
-    public void  findByIdShouldThrowAddressEntityNotFoundRuntimeExceptionWithEntityNotPresent() {
+    public void findByIdShouldThrowAddressEntityNotFoundRuntimeExceptionWithNoEntity() {
         exception.expect(AddressEntityNotFoundRuntimeException.class);
         exception.expectMessage("Address Entity Not Found!");
 
