@@ -39,13 +39,11 @@ public class UtilityServiceImpl implements UtilityService {
 
     @Override
     public Long countPrice(Integer discount, Long time) {
-        log.info("UtilityServiceImpl:countPrice");
         return time * (100 - discount) / 40;
     }
 
     @Override
     public Page<Order> buildPageOrders(Pageable pageable, Client client) {
-        log.info("UtilityServiceImpl:buildPageOrders");
         final List<Order> orders = new ArrayList<>();
 
         for (OrderEntity v : orderRepository.findAllByClientEntityId(client.getId())) {
@@ -68,7 +66,6 @@ public class UtilityServiceImpl implements UtilityService {
 
     @Override
     public Page<Car> buildPageCars(Pageable pageable) {
-        log.info("UtilityServiceImpl:buildPageCars");
         final List<Car> cars = new ArrayList<>();
 
         carRepository.findAll().forEach(v -> cars.add(Car
@@ -86,7 +83,6 @@ public class UtilityServiceImpl implements UtilityService {
 
     @Override
     public Page<Client> buildPageClients(Pageable pageable) {
-        log.info("UtilityServiceImpl:buildPageClients");
         final List<Client> clients = new ArrayList<>();
 
         clientRepository.findByRole(Role.ROLE_USER).forEach(v ->
