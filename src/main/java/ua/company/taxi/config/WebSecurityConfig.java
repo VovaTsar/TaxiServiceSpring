@@ -21,7 +21,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final LoginSuccessHandler loginSuccessHandler;
 
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -41,6 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(clientServiceImpl)

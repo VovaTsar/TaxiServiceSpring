@@ -15,6 +15,7 @@ import java.util.Collection;
 @Builder
 @Table(name = "addresses")
 public class AddressEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_address", unique = true, nullable = false)
@@ -36,4 +37,5 @@ public class AddressEntity {
 
     @Column(name = "time", nullable = false)
     private Long time;
+
 }

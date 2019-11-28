@@ -106,7 +106,7 @@
 
     <form action="/user/history" method="post">
         <input type="hidden" name="carId" value="${RequestParameters.carId}" />
-        <input type="hidden" name="timeId" value="${timeId.id}" />
+        <input type="hidden" name="addressId" value="${addressId.id}" />
         <input type="hidden" name="price" value="${price}" />
         <input type="hidden" name="waitTime" value="${waitTime}" />
         <input type="hidden" name="_csrf" value="${_csrf.token}" />

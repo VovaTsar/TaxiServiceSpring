@@ -10,9 +10,6 @@ import java.util.Optional;
 @Repository
 public interface AddressRepository extends CrudRepository<AddressEntity, Long> {
 
-    Optional<AddressEntity> getTimeById(Long id);
-
     Optional<AddressEntity> findAllByDestinationPlaceAndInitialPlace(Street initialPlace, Street destinationPlace);
-
 
 }

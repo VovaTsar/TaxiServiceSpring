@@ -2,8 +2,7 @@ package ua.company.taxi.model.exception;
 
 public class AddressEntityNotFoundRuntimeException extends RuntimeException {
 
-    public AddressEntityNotFoundRuntimeException() {
-    }
+    public AddressEntityNotFoundRuntimeException() { }
 
     public AddressEntityNotFoundRuntimeException(String message) {
         super(message);

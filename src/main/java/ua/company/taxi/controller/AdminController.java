@@ -28,7 +28,7 @@ public class AdminController {
     }
 
     @GetMapping(path = "/home")
-    String getAdminHome(Map<String, Object> model) {
+    public String getAdminHome(Map<String, Object> model) {
 
         model.put("client", clientService.getCurrentClient());
         return "adminHome";

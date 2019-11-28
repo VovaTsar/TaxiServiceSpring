@@ -14,6 +14,7 @@ import javax.persistence.*;
 @Builder
 @Table(name = "discounts")
 public class DiscountEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_discounts", unique = true, nullable = false)
