@@ -21,7 +21,7 @@ import ua.company.taxi.model.service.AddressService;
 import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -76,7 +76,7 @@ public class AddressServiceImplTest {
     }
 
     @Test
-    public void findLongTimeShouldReturnTimeByTwoStringParam() {
+    public void findTimeOfOrderShouldReturnTimeByTwoStringParam() {
         when(repository.findAllByDestinationPlaceAndInitialPlace(any(), any())).thenReturn(Optional.of(ENTITY));
         when(mapper.addressEntityToAddress(any(AddressEntity.class))).thenReturn(ADDRESS);
         Long actual = service.findAllByDestinationPlaceAndInitialPlace(Street.Kreschatyk, Street.Polytech).getTime();
@@ -89,11 +89,11 @@ public class AddressServiceImplTest {
     }
 
     @Test
-    public void findLongTimeShouldThrowUnCorrectInputDataRuntimeExceptionWithNegativeId() {
+    public void findTimeOfOrderShouldThrowUnCorrectInputDataRuntimeExceptionWithNegativeId() {
         exception.expect(UnCorrectInputDataRuntimeException.class);
         exception.expectMessage("InitialPlace or destinationPlace is empty");
 
-        service.findLongTime(null, null);
+        service.findTimeOfOrder(null, null);
     }
 
     @Test

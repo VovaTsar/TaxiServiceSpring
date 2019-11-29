@@ -22,7 +22,7 @@ import ua.company.taxi.model.service.ClientService;
 import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -33,7 +33,6 @@ public class ClientServiceImplTest {
     private static final Client CLIENT = new Client(1L, "Vova777", null, 0L, Role.ROLE_USER, null);
 
     private static final ClientEntity ENTITY =  ClientEntity.builder().login("Vova777").build();
-
 
 
     @Rule
@@ -87,7 +86,7 @@ public class ClientServiceImplTest {
 
     @Test
     public void addToSpentValueShouldUpdateTotalValueClient() {
-//when(repository.updateSpentValue(any(),any())).thenReturn(ENTITY);
+//when(repository.updateSpentValue(anyLong(),anyLong())).;
 //        Client actual= Client.builder()
 //            .id(1L)
 //            .totalSpentValue(100L)

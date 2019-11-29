@@ -60,12 +60,12 @@ public class UserController {
         model.put("destPlace", destPlace);
         model.put("carType", carType);
         if (carId != null) {
-            model.put("waitTime", addressService.findLongTime(carService.getCarById(carId).getPlace(), destPlace));
-            model.put("rideTime", addressService.findLongTime(initPlace, destPlace));
+            model.put("waitTime", addressService.findTimeOfOrder(carService.getCarById(carId).getPlace(), destPlace));
+            model.put("rideTime", addressService.findTimeOfOrder(initPlace, destPlace));
             model.put("addressId", addressService.findAllByDestinationPlaceAndInitialPlace(initPlace, destPlace));
             model.put("price", utilityService.countPrice(
                     discountService.getClientDiscount(clientService.getCurrentClient()),
-                    addressService.findLongTime(initPlace, destPlace)));
+                    addressService.findTimeOfOrder(initPlace, destPlace)));
             model.put("car", carService.getCarById(carId));
         }
         return "order";

@@ -24,9 +24,9 @@ public class AddressServiceImpl implements AddressService {
 
 
     @Override
-    public Long findLongTime(Street initialPlace, Street destinationPlace) {
+    public Long findTimeOfOrder(Street initialPlace, Street destinationPlace) {
         if (Objects.isNull(initialPlace) || Objects.isNull(destinationPlace)) {
-            log.warn("AddressServiceImpl:findLongTime");
+            log.warn("AddressServiceImpl:findTimeOfOrder");
             throw new UnCorrectInputDataRuntimeException("InitialPlace or destinationPlace is empty");
         }
         return findAllByDestinationPlaceAndInitialPlace(initialPlace, destinationPlace).getTime();
