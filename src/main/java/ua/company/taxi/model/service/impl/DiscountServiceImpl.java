@@ -25,7 +25,7 @@ public class DiscountServiceImpl implements DiscountService {
     public Integer getClientDiscount(Client client) {
         if (Objects.isNull(client)) {
             log.warn("DiscountServiceImpl:getClientDiscount");
-            throw new UnCorrectInputDataRuntimeException("client is empty");
+            throw new UnCorrectInputDataRuntimeException("Client is empty");
         }
 
         return discountRepository.getPersonalDiscount(clientMapper.clientToClientEntity(client)

@@ -14,6 +14,7 @@ import ua.company.taxi.model.entity.AddressEntity;
 import ua.company.taxi.model.entity.CarEntity;
 import ua.company.taxi.model.entity.OrderEntity;
 import ua.company.taxi.model.entity.Role;
+import ua.company.taxi.model.exception.UnCorrectInputDataRuntimeException;
 import ua.company.taxi.model.repository.AddressRepository;
 import ua.company.taxi.model.repository.CarRepository;
 import ua.company.taxi.model.repository.ClientRepository;
@@ -39,6 +40,10 @@ public class UtilityServiceImpl implements UtilityService {
 
     @Override
     public Long countPrice(Integer discount, Long time) {
+        if (discount < 0 || time < 0) {
+            log.warn("OrderServiceImpl:getNumRides");
+            throw new UnCorrectInputDataRuntimeException("Discount or time must be positive");
+        }
         return time * (100 - discount) / 40;
     }
 

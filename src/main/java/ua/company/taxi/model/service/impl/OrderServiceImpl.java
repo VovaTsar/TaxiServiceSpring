@@ -25,7 +25,7 @@ public class OrderServiceImpl implements OrderService {
     public void addOrder(Order order) {
         if (Objects.isNull(order)) {
             log.warn("OrderServiceImpl:addOrder");
-            throw new UnCorrectInputDataRuntimeException("order is empty");
+            throw new UnCorrectInputDataRuntimeException("Order is empty");
         }
         orderRepository.save(orderMapper.orderToOrderEntity(order));
     }
