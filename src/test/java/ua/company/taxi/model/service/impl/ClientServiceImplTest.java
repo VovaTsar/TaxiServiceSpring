@@ -86,7 +86,6 @@ public class ClientServiceImplTest {
 
     @Test
     public void addToSpentValueShouldUpdateTotalValueClient() {
-//when(repository.updateSpentValue(anyLong(),anyLong())).;
 //        Client actual= Client.builder()
 //            .id(1L)
 //            .totalSpentValue(100L)
@@ -95,6 +94,8 @@ public class ClientServiceImplTest {
 //        CLIENT.setPassword(actual.getPassword());
 //
 //        assertThat(actual, equalTo(CLIENT));
+//        when(repository.updateSpentValue(anyLong(),anyLong()));
+//        verify(repository).updateSpentValue(any(),any());
     }
 
     @Test

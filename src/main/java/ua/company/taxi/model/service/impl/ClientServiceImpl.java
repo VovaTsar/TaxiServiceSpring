@@ -25,7 +25,7 @@ public class ClientServiceImpl implements ClientService {
 
     private final ClientRepository clientRepository;
     private final ClientMapper clientMapper;
-
+    private final BCryptPasswordEncoder encoder;
 
     @Override
     public Client getCurrentClient() {
@@ -57,7 +57,7 @@ public class ClientServiceImpl implements ClientService {
         }
         client.setRole(Role.ROLE_USER);
         client.setTotalSpentValue(0L);
-        client.setPassword((new BCryptPasswordEncoder().encode(client.getPassword())));
+        client.setPassword((encoder.encode(client.getPassword())));
         clientRepository.save(clientMapper.clientToClientEntity(client));
     }
 
