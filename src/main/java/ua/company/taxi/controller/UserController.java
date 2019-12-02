@@ -40,8 +40,7 @@ public class UserController {
     }
 
     @GetMapping(path = "/order")
-    public String showOrderPage(Map<String, Object> model) {
-
+    public String showOrderPage() {
         return "order";
     }
 

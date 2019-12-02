@@ -32,7 +32,7 @@ public class ClientServiceImplTest {
 
     private static final Client CLIENT = new Client(1L, "Vova777", null, 0L, Role.ROLE_USER, null);
 
-    private static final ClientEntity ENTITY =  ClientEntity.builder().login("Vova777").build();
+    private static final ClientEntity ENTITY = ClientEntity.builder().login("Vova777").build();
 
 
     @Rule
@@ -84,19 +84,6 @@ public class ClientServiceImplTest {
         service.addToSpentValue(-100L);
     }
 
-    @Test
-    public void addToSpentValueShouldUpdateTotalValueClient() {
-//        Client actual= Client.builder()
-//            .id(1L)
-//            .totalSpentValue(100L)
-//            .build();
-//        service.addToSpentValue(actual.getId(),100L);
-//        CLIENT.setPassword(actual.getPassword());
-//
-//        assertThat(actual, equalTo(CLIENT));
-//        when(repository.updateSpentValue(anyLong(),anyLong()));
-//        verify(repository).updateSpentValue(any(),any());
-    }
 
     @Test
     public void loadUserByUsernameShouldThrowUnCorrectInputDataRuntimeExceptionWithEmptyLogin() {
