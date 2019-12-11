@@ -31,8 +31,6 @@ public class UserController {
     @GetMapping(path = "/home")
     public String showHome(Model model,
                            @RequestParam(value = "cancel", required = false) String cancel) {
-
-
         model.addAttribute("cancel", cancel != null);
         model.addAttribute("client", clientService.getCurrentClient());
         model.addAttribute("numRides", orderService.getNumRides(clientService.getCurrentClient().getId()));

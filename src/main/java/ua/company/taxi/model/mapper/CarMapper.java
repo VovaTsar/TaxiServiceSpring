@@ -1,12 +1,10 @@
 package ua.company.taxi.model.mapper;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import ua.company.taxi.model.domain.Car;
 import ua.company.taxi.model.entity.CarEntity;
 
 @Component
-@Slf4j
 public class CarMapper {
 
     public Car carEntityToCar(CarEntity carEntity) {
