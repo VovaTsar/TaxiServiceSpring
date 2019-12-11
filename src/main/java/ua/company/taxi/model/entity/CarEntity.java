@@ -14,7 +14,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @Builder
 @Table(name = "cars")
-public class CarEntity {
+public class   CarEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

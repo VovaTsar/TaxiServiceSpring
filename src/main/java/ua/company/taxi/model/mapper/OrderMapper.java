@@ -1,14 +1,12 @@
 package ua.company.taxi.model.mapper;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ua.company.taxi.model.domain.Order;
 import ua.company.taxi.model.entity.OrderEntity;
 
 @Component
-@Slf4j
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class OrderMapper {
 
